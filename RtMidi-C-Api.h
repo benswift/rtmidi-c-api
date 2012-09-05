@@ -30,7 +30,7 @@ int8_t* getPortName( outDevice* dev, int64_t portNumber );
 rtErr newMidiOutDevice( outDevice* dev, apiType api, char* clientName );
 rtErr openPort( outDevice* dev, int64_t portNumber, char* portName );
 rtErr closePort( outDevice* dev );
-rtErr sendMessage( outDevice* dev, int8_t* message );
+rtErr sendMessage( outDevice* dev, uint8_t* message );
 
 rtErr deleteMidiOutDevice( outDevice* dev );
 
