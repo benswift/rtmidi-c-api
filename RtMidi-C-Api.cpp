@@ -96,13 +96,17 @@ rtErr closeInPort( inDevice* dev ){
 // typedef void (*xtmCallback)( double timeStamp, int64_t messageLength, uint8_t* message );
 
 void callbackWrapper( double timeStamp, std::vector<unsigned char> *message, void *userData ){
-     ((xtmCallback)userData)(timeStamp, (int64_t)message->size(), (uint8_t *)message->data() );
+     uint8_t msg[4];
+     for (int i = 0; i < message->size(); ++i)
+     {
+          msg[i] = (uint8_t)message->at(i);
+     }
+     ((xtmCallback)userData)(timeStamp, (int64_t)message->size(), msg );
      return;
 };
 
 rtErr setCallback( inDevice* dev, xtmCallback callback ){
      try {
-          std::vector<uint8_t> msgVector;
           dev->ptr->setCallback(&callbackWrapper, (void*)callback);
           return RTMIDI_NOERROR;
      }
