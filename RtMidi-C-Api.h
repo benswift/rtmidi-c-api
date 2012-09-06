@@ -20,31 +20,46 @@ enum rtErr {
      RTMIDI_ERROR
 };
 
+struct inDevice {
+     RtMidiIn* ptr;
+};
+
 struct outDevice {
      RtMidiOut* ptr;
 };
 
-typedef int32_t apiType;
-
-// midi device info
-
-int32_t getCurrentApi( outDevice* dev );
-int64_t getPortCount( outDevice* dev );
-int8_t* getPortName( outDevice* dev, int64_t portNumber );
-
-// midi out devices
-
-rtErr newMidiOutDevice( outDevice* dev, apiType api, char* clientName );
-rtErr openPort( outDevice* dev, int64_t portNumber, char* portName );
-rtErr openVirtualPort( outDevice* dev, char* portName );
-rtErr closePort( outDevice* dev );
-rtErr sendMessage( outDevice* dev, int64_t messageSize, uint8_t* message );
-
-rtErr deleteMidiOutDevice( outDevice* dev );
+typedef void (*xtmCallback)( double timeStamp, int64_t messageLength, uint8_t* message );
 
 // midi input
 
-// rtErr newMidiInDevice( outDevice* dev );
+rtErr newMidiInDevice( inDevice* dev, RtMidi::Api api, char* clientName );
+rtErr deleteMidiInDevice( inDevice* dev );
+
+int32_t getInCurrentApi( inDevice* dev );
+int64_t getInPortCount( inDevice* dev );
+int8_t* getInPortName( inDevice* dev, int64_t portNumber );
+
+rtErr openInPort( inDevice* dev, int64_t portNumber, char* portName );
+rtErr openInVirtualPort( inDevice* dev, char* portName );
+rtErr closeInPort( inDevice* dev );
+
+void callbackWrapper( double timeStamp, std::vector<unsigned char> *message, void *userData );
+rtErr setCallback( inDevice* dev, xtmCallback callback );
+rtErr cancelCallback( inDevice* dev );
+
+// midi output
+
+rtErr newMidiOutDevice( outDevice* dev, RtMidi::Api api, char* clientName );
+rtErr deleteMidiOutDevice( outDevice* dev );
+
+int32_t getOutCurrentApi( outDevice* dev );
+int64_t getOutPortCount( outDevice* dev );
+int8_t* getOutPortName( outDevice* dev, int64_t portNumber );
+
+rtErr openOutPort( outDevice* dev, int64_t portNumber, char* portName );
+rtErr openOutVirtualPort( outDevice* dev, char* portName );
+rtErr closeOutPort( outDevice* dev );
+rtErr sendMessage( outDevice* dev, int64_t messageLength, uint8_t* message );
 
 #ifdef __cplusplus
 } // extern "C"
