@@ -1,7 +1,7 @@
 # C API for the RtMidi library
 
 A C API for interfacing with the
-[http://music.mcgill.ca/~gary/rtmidi/](RtMidi library) by Gary P.
+[RtMidi library](http://music.mcgill.ca/~gary/rtmidi/) by Gary P.
 Scavone.
 
 This API may be useful for those trying to deal with MIDI when binding
@@ -10,7 +10,7 @@ library.
 
 # Installation
 
-1. Download the [http://www.music.mcgill.ca/~gary/rtmidi/index.html#download](RtMidi 2.0.1 source)
+1. Download the [RtMidi 2.0.1 source](http://www.music.mcgill.ca/~gary/rtmidi/index.html#download)
 2. Copy the `RtMidi-C-Api.h`/`RtMidi-C-Api.c` files from this repo into the RtMidi source directory
 3. Build the library.  On OSX, you can build a shared library with use:
 ```
