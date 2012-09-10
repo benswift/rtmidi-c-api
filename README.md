@@ -1,22 +1,37 @@
 # C API for the RtMidi library
 
-A C API for interfacing with the
+A C API for interfacing with the (C++)
 [RtMidi library](http://music.mcgill.ca/~gary/rtmidi/) by Gary P.
-Scavone.
-
-This API may be useful for those trying to deal with MIDI when binding
-to C++ libraries isn't an option. It can also be compiled as a shared
-library.
+Scavone. This wrapper allows RtMidi to be compiled as a C shared
+library. This may be useful when calling a C++ library isn't an
+option.
 
 # Installation
 
 1. Download the [RtMidi 2.0.1 source](http://www.music.mcgill.ca/~gary/rtmidi/index.html#download)
 2. Copy the `RtMidi-C-Api.h`/`RtMidi-C-Api.c` files from this repo into the RtMidi source directory
-3. Build the library.  On OSX, you can build a shared library with use:
+3. Build the shared library.  The RtMidi page
+[has some instructions](http://www.music.mcgill.ca/~gary/rtmidi/index.html#compiling)
+for how to compile and link against the RtMidi classes.  You will need
+to specify the MIDI API to link against.  Here are some examples which
+may cover your use case:
+
+**OS X** with CoreMIDI
 ```
-clang++ -dynamiclib -Wall -D__MACOSX_CORE__ -o librtmidi.dylib RtMidi.cpp RtMidi-C-Api.cpp -framework CoreMIDI -framework CoreAudio -framework CoreFoundation
+g++ -dynamiclib -Wall -D__MACOSX_CORE__ -o librtmidi.dylib RtMidi.cpp RtMidi-C-Api.cpp -framework CoreMIDI -framework CoreAudio -framework CoreFoundation
 ```
-but it should compile on all platforms.
+**Linux** with Jack
+```
+g++ -dynamiclib -Wall -D__UNIX_JACK__ -o librtmidi.so RtMidi.cpp RtMidi-C-Api.cpp -ljack
+```
+**Linux** with ALSA
+```
+g++ -dynamiclib -Wall -D__LINUX_ALSA__ -o  -o librtmidi.so RtMidi.cpp RtMidi-C-Api.cpp -lasound -lpthread
+```
+**Windows**
+If you compile it on Windows, send me the build settings and I'll
+include them here.  It should work fine, I just haven't tried it
+myself.
 
 # Licence
 
