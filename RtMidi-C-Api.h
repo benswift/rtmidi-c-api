@@ -3,7 +3,12 @@
 // to compile (on OSX):
 // clang++ -dynamiclib -Wall -D__MACOSX_CORE__ -o librtmidi.dylib RtMidi.cpp RtMidi-C-Api.cpp -framework CoreMIDI -framework CoreAudio -framework CoreFoundation
 
+#if defined(__MACOSX_CORE__)
 #include <sys/types.h>
+#else
+#include <stdint.h>
+#endif
+
 #include <iostream>
 #include <vector>
 #include <string>
