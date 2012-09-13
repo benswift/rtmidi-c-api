@@ -22,7 +22,7 @@ g++ -dynamiclib -Wall -D__MACOSX_CORE__ -o librtmidi.dylib RtMidi.cpp RtMidi-C-A
 ```
 **Linux** with Jack
 ```
-g++ -dynamiclib -Wall -D__UNIX_JACK__ -o librtmidi.so RtMidi.cpp RtMidi-C-Api.cpp -ljack
+g++ -shared -fPIC -w -DUNIX_JACK -o librtmidi.so RtMidi.cpp RtMidi-C-Api.cpp -ljack
 ```
 **Linux** with ALSA
 ```
