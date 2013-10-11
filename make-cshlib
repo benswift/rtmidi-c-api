@@ -1,0 +1,7 @@
+case $(uname) in
+  Darwin) COMPILATION_ARGS='-dynamiclib -Wall -D__MACOSX_CORE__ -o librtmidi.dylib RtMidi.cpp RtMidi-C-Api.cpp -framework CoreMIDI -framework CoreAudio -framework CoreFoundation' ;;
+	Linux) COMPILATION_ARGS='-dynamiclib -Wall -D__LINUX_ALSA__ -o  -o librtmidi.so RtMidi.cpp RtMidi-C-Api.cpp -lasound -lpthread' ;;
+	*) echo Unsupported OS:  $(uname) >&2 ; exit 1 ;;
+esac
+
+g++ $COMPILATION_ARGS
