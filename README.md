@@ -10,10 +10,23 @@ option.
 
 1. Download the [RtMidi 2.0.1 source](http://www.music.mcgill.ca/~gary/rtmidi/index.html#download)
 2. Copy the `RtMidi-C-Api.h`/`RtMidi-C-Api.c` files from this repo into the RtMidi source directory
-3. Build the shared library.  The RtMidi page
+3. Build the shared library.
+
+*Easy way*
+
+If you're on OSX, or building against ALSA on Linux, you can just use
+the `make-cshlib` script
+
+```
+./make-cshlib
+```
+
+*Harder way*
+
+The RtMidi page
 [has some instructions](http://www.music.mcgill.ca/~gary/rtmidi/index.html#compiling)
-for how to compile and link against the RtMidi classes.  You will need
-to specify the MIDI API to link against.  Here are some examples which
+for how to compile and link against the RtMidi classes. You will need
+to specify the MIDI API to link against. Here are some examples which
 may cover your use case:
 
 **OS X** with CoreMIDI
