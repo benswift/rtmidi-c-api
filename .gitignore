@@ -1,4 +1,10 @@
-*
-!RtMidi-C-Api.*
-!.gitignore
-!README.md
+Makefile
+config/
+config.log
+config.status
+configure
+doc/
+*.o
+*.a
+*.dylib
+rtmidi-config
