@@ -1,9 +1,2 @@
-Makefile
 config/
-config.log
-config.status
 doc/
-*.o
-*.a
-*.dylib
-rtmidi-config
