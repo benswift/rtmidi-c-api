@@ -15,8 +15,8 @@ isn't an option.
 There are a couple of makefiles which should make building the shared
 lib easy.
 
-- If you're on **OSX**, use `Makefile-osx`
-- If you're on **Linux** (using ALSA), use `Makefile-linux`
+- If you're on **OSX**, use ` make -f Makefile-osx`
+- If you're on **Linux** (using ALSA), use `make -f Makefile-linux`
 
 If you manage to compile it on **Windows**, send me the build
 settings/commands you used and I'll include them here. It should work
