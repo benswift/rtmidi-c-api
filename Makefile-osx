@@ -1,8 +1,8 @@
 FILES = RtMidi.cpp RtMidi-C-Api.cpp
 SHARED = librtmidic.dylib
 
-all :
+all:
 	g++ -dynamiclib -Wall -D__MACOSX_CORE__ $(FILES) -framework CoreMIDI -framework CoreAudio -framework CoreFoundation -o $(SHARED)
 
-clean : 
+clean: 
 	rm -f $(SHARED)
