@@ -3,45 +3,24 @@
 A C API for interfacing with the (C++)
 [RtMidi library](http://music.mcgill.ca/~gary/rtmidi/) by Gary P.
 Scavone. This wrapper allows RtMidi to be compiled as a C shared
-library. This may be useful when calling a C++ library isn't an
-option.
+library. 
+
+The C API isn't complete, it is fit-for-purpose, but doesn't have all
+the features of the C++ one. If you can use C++, you probably
+should---but this C wrapper may be useful when calling a C++ library
+isn't an option.
 
 # Installation
 
-1. Download the [RtMidi 2.0.1 source](http://www.music.mcgill.ca/~gary/rtmidi/index.html#download)
-2. Copy the `RtMidi-C-Api.h`/`RtMidi-C-Api.c` files from this repo into the RtMidi source directory
-3. Build the shared library: this can be done the easy way, or the
-   hard way.
+There are a couple of makefiles which should make building the shared
+lib easy.
 
-*Easy way*
+- If you're on **OSX**, use `Makefile-osx`
+- If you're on **Linux** (using ALSA), use `Makefile-linux`
 
-If you're on OSX, or Linux (using ALSA), you can just use the
-`make-cshlib` script
-
-```
-./make-cshlib
-```
-
-*Hard way*
-
-The RtMidi page
-[has some instructions](http://www.music.mcgill.ca/~gary/rtmidi/index.html#compiling)
-for how to compile and link against the RtMidi classes. You will need
-to specify the MIDI API to link against. Here are some examples which
-may cover your use case:
-
-**OS X**
-```
-g++ -dynamiclib -Wall -D__MACOSX_CORE__ -o librtmidi.dylib RtMidi.cpp RtMidi-C-Api.cpp -framework CoreMIDI -framework CoreAudio -framework CoreFoundation
-```
-**Linux** (ALSA)
-```
-g++ -shared -fPIC -Wall -D__LINUX_ALSA__ -o  -o librtmidi.so RtMidi.cpp RtMidi-C-Api.cpp -lasound -lpthread
-```
-**Windows**
-If you compile it on Windows, send me the build settings and I'll
-include them here.  It should work fine, I just haven't tried it
-myself.
+If you manage to compile it on **Windows**, send me the build
+settings/commands you used and I'll include them here. It should work
+fine, I just haven't tried it myself.
 
 # Licence
 
