@@ -2,7 +2,6 @@ Makefile
 config/
 config.log
 config.status
-configure
 doc/
 *.o
 *.a
