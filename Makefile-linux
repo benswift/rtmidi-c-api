@@ -1,5 +1,5 @@
 FILES = RtMidi.cpp RtMidi-C-Api.cpp
-SHARED = librtmidic.dylib
+SHARED = librtmidic.so
 
 all:
 	g++ -shared -fPIC -Wall -D__LINUX_ALSA__ $(FILES) -lasound -lpthread -o $(SHARED)
